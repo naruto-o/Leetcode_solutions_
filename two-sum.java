@@ -32,3 +32,22 @@ class Solution {
         throw new IllegalArgumentException("no solution.");
     }
 }
+// same solution while shorrtened the code by hash map usage  efficiently
+// https://www.youtube.com/watch?v=lgIyan-3aY0  credit to this video
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer,Integer> map = new HashMap<>();
+        
+        for(int i = 0;i<nums.length;i++){
+            map.put(nums[i],i);
+        }
+        for(int i = 0; i<nums.length;i++){
+            int complement = target - nums[i];
+            if(map.containsKey(complement)){
+             return new int[]{map.get(complement),i}  ; 
+            }
+            map.put(nums[i],i);
+        }
+        throw new IllegalArgumentException("No solution");
+    }
+}
