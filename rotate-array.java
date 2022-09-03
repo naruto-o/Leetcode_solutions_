@@ -1,4 +1,30 @@
 https://leetcode.com/problems/rotate-array/
+
+class Solution {
+    public void rotate(int[] nums, int k) {
+        k %= nums.length; // this will decrement k so we do not iteratecontinuouslu
+        //now  we apply reversal algorithm ;
+        //first step is reversing the whole array 
+        reverse(nums,0,nums.length-1);
+        //second step is to reverse the array upto till k elements 
+        reverse(nums,0,k-1)l;
+        //third step is to reverse elements after n-k elements or we say reverse the whoe aarray after k elements 
+        reverse(nums,k,nums.length-1);
+    }
+    //now we create the reverse  function
+    public void reverse(int[]nums,int start,int end){
+        while(start<end){
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+            start++;
+            end--;
+        }
+    }
+}
+
+//monu bhaiya soluiton
+
 class Solution {
     public void rotate(int[] nums, int k) {
 
