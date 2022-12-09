@@ -9,6 +9,43 @@
  * }
  */
 class Solution {
+    public ListNode mergeTwoLists(ListNode list1, ListNode list2) {
+
+        if(list1==null) return list2;
+        else if(list2==null) return list1;
+        ListNode res=new ListNode();
+        ListNode ptr1=list1;
+        ListNode ptr2=list2;
+
+        if(ptr1.val>ptr2.val){
+            res= ptr2;
+            ptr2=ptr2.next;
+        }else{
+            res= ptr1;
+            ptr1=ptr1.next;
+        }
+        ListNode resPtr=res;
+
+        while(ptr1!=null && ptr2!=null){
+            if(ptr1.val>ptr2.val){
+                resPtr.next= ptr2;
+                resPtr=resPtr.next;
+                ptr2=ptr2.next;
+            }else{
+                resPtr.next= ptr1;
+                resPtr=resPtr.next;
+                ptr1=ptr1.next;
+            }
+        }
+
+        if(ptr1==null) resPtr.next=ptr2;
+        else resPtr.next= ptr1;
+        return res;
+    }
+}
+
+
+class Solution {
     public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
             // Check if ant of the lists are null
         if (l1 == null) {
