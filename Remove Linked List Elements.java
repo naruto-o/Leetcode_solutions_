@@ -11,20 +11,18 @@ https://leetcode.com/problems/remove-linked-list-elements/
  */
 class Solution {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode temp = new ListNode(-1);
-        temp.next = head;
-        ListNode cur = head;
-        ListNode prev = head;
-        
-        while(cur !=null){
-            if(cur.val == val){
-                prev.next = cur.next;
-            }
-            else{
-                prev = cur;
-            }
+        //check for first node' val == val
+        while (head != null && head.val == val) {
+            head = head.next;
         }
-        return temp.next;
+        ListNode temp = head;
+        while (head != null) {
+            if (head.next != null && head.next.val == val) {
+                head.next = head.next.next;
+                continue;
+            }
+            head = head.next;
+        }
+        return temp;
     }
 }
- 
