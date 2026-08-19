@@ -1,39 +1,36 @@
 https://leetcode.com/problems/3sum/
 
-public List<List<Integer>> threeSum(int[] nums) {
-    Arrays.sort(nums);
- 
-    ArrayList<List<Integer>> result = new ArrayList<>();
- 
-    for (int i = 0; i < nums.length; i++) {
-        int j = i + 1;
-        int k = nums.length - 1;
- 
-        if (i > 0 && nums[i] == nums[i - 1]) {
-            continue;
-        }
- 
-        while (j < k) {
-            if (k < nums.length - 1 && nums[k] == nums[k + 1]) {
-                k--;
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> result= new ArrayList<>();
+        Arrays.sort(nums);
+
+        for(int i = 0;i<nums.length-2;i++){
+            if(i > 0 && nums[i] == nums[i-1]){
                 continue;
             }
- 
-            if (nums[i] + nums[j] + nums[k] > 0) {
-                k--;
-            } else if (nums[i] + nums[j] + nums[k] < 0) {
-                j++;
-            } else {
-                ArrayList<Integer> l = new ArrayList<>();
-                l.add(nums[i]);
-                l.add(nums[j]);
-                l.add(nums[k]);
-                result.add(l);
-                j++;
-                k--;
+           int left = i+1;
+           int right= nums.length-1;
+            int sum = 0;
+            while(left<right){
+                if(nums[left]+nums[right]+nums[i] == sum){
+                    result.add(Arrays.asList(nums[i],nums[left],nums[right]));
+                    left++;
+                    right--;
+                    while(left<nums.length && nums[left]==nums[left-1]){
+                        left++;
+                    }
+                     while(right>0 && nums[right]==nums[right+1]){
+                        right--;
+                    }
+                }
+                else if(nums[left]+nums[right]+nums[i] > sum){
+                    right--;
+                }else{
+                    left++;
+                }
             }
         }
+        return result;
     }
- 
-    return result;
 }
